@@ -41,19 +41,19 @@ scriptdir=`pwd`/jenkinsdeploy/
 mkdir -p $scriptdir
 
 # 当前部署版本号
-currversion=$scriptdir/currentversion.txt
+currversion=${scriptdir}currentversion.txt
 
 # 上次部署版本
-lastversion=$scriptdir/lastversion.txt
+lastversion=${scriptdir}lastversion.txt
 if [ ! -f "$lastversion" ];then
         echo "" > $lastversion
 fi
 
 # git commit日志
-gitcommitlog=$scriptdir/gitcommitlog.txt
+gitcommitlog=${scriptdir}gitcommitlog.txt
 
 # 两个版本间差异文件列表
-difffile=$scriptdir/difffile.txt
+difffile=${scriptdir}difffile.txt
 
 #if [ "$repodif" == "" ];then
 #        echo "仓库本地目录不能为空，请输入本地仓库目录参数！"
