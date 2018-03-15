@@ -456,8 +456,8 @@ class zabbix_api:
             result = urllib2.urlopen(request)
             result.close()
             print("主机 \033[041m %s\033[0m  已经删除 !" % hostName)
-        except Exception as e:
-            print("Error as ", e)
+        except Exception,e:
+            print(e)
 
 if __name__ == "__main__":
     zabbix=zabbix_api()
