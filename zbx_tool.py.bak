@@ -3,7 +3,8 @@
 
 import json
 import sys
-import urllib2
+#import urllib2 ###py2.7
+import urllib.request
 import argparse
 
 from urllib2 import URLError
@@ -456,8 +457,8 @@ class zabbix_api:
             result = urllib2.urlopen(request)
             result.close()
             print("主机 \033[041m %s\033[0m  已经删除 !" % hostName)
-        except Exception,e:
-            print(e)
+        except Exception as e:
+            print("Error as ", e)
 
 if __name__ == "__main__":
     zabbix=zabbix_api()
