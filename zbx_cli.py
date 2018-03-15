@@ -61,14 +61,14 @@ def disable_hosts():
         
 if __name__ == "__main__": 
     if len(sys.argv) == 1 or sys.argv[1] == '-h': 
-        print "you need a argv,like:" 
-        print """ 
+        print("you need a argv,like:" )
+        print(""" 
         python zbx_cli.py -A #批量添加主机 
         python zbx_cli.py -C #批量查询主机 
         python zbx_cli.py -D #批量删除主机 
         python zbx_cli.py -e #批量开启主机 
         python zbx_cli.py -d #批量禁止主机 
-        """ 
+        """ )
     else: 
         if sys.argv[1] == '-A': 
             create_hosts() 

@@ -36,9 +36,9 @@ class zabbix_api:
         try:
             result = urllib2.urlopen(request)
         except URLError as e:
-            print("\033[041m 认证失败，请检查URL !\033[0m",e.code)
+            print "\033[041m 认证失败，请检查URL !\033[0m",e.code
         except KeyError as e:
-            print("\033[041m 认证失败，请检查用户名密码 !\033[0m",e)
+            print "\033[041m 认证失败，请检查用户名密码 !\033[0m",e
         else:
             response = json.loads(result.read())
             result.close()
@@ -64,18 +64,18 @@ class zabbix_api:
             result = urllib2.urlopen(request)
         except URLError as e:
             if hasattr(e, 'reason'):
-                prin('We failed to reach a server.')
-                print('Reason: ', e.reason)
+                print 'We failed to reach a server.'
+                print 'Reason: ', e.reason
             elif hasattr(e, 'code'):
-                print('The server could not fulfill the request.')
-                print('Error code: ', e.code)
+                print 'The server could not fulfill the request.'
+                print 'Error code: ', e.code
         else:
             response = json.loads(result.read())
             #print response
             result.close()
 
             if not len(response['result']):
-                print("hostId is not exist")
+                print "hostId is not exist"
                 return False
 
             #print "主机数量: \33[31m%s\33[0m" % (len(response['result']))
@@ -112,18 +112,18 @@ class zabbix_api:
             result = urllib2.urlopen(request)
         except URLError as e:
             if hasattr(e, 'reason'):
-                print('We failed to reach a server.')
-                print('Reason: ', e.reason)
+                print 'We failed to reach a server.'
+                print 'Reason: ', e.reason
             elif hasattr(e, 'code'):
-                print('The server could not fulfill the request.')
-                print('Error code: ', e.code)
+                print 'The server could not fulfill the request.'
+                print 'Error code: ', e.code
         else:
             response = json.loads(result.read())
             # print response
             result.close()
 
             if not len(response['result']):
-                print("\033[041m hostid \033[0m is not exist")
+                print "\033[041m hostid \033[0m is not exist"
                 return False
 
             #print "主机数量: \33[31m%s\33[0m" % (len(response['result']))
@@ -156,18 +156,18 @@ class zabbix_api:
             result = urllib2.urlopen(request)
         except URLError as e:
             if hasattr(e, 'reason'):
-                print('We failed to reach a server.')
-                print('Reason: ', e.reason)
+                print 'We failed to reach a server.'
+                print 'Reason: ', e.reason
             elif hasattr(e, 'code'):
-                print('The server could not fulfill the request.')
-                print('Error code: ', e.code)
+                print 'The server could not fulfill the request.'
+                print 'Error code: ', e.code
         else:
             response = json.loads(result.read())
             #print reqponse
             result.close()
 
             if not len(response['result']):
-                print("\033[041m %s \033[0m is not exist" % hostName)
+                print "\033[041m %s \033[0m is not exist" % hostName
                 return False
 
             print "主机数量: \033[31m%s\033[0m"%(len(response['result']))
@@ -176,9 +176,9 @@ class zabbix_api:
                 available={"0":"Unknown","1":"available","2":"Unavailable"}
                 #print host
                 if len(hostName)==0:
-                    print("HostID : %s\t HostName : %s\t HostIp : %s\t Status :%s \t Available :%s"%(host['hostid'],host['name'],self.hostid_get_hostip(hostId=host['hostid']),status[host['status']],available[host['available']]))
+                    print "HostID : %s\t HostName : %s\t HostIp : %s\t Status :%s \t Available :%s"%(host['hostid'],host['name'],self.hostid_get_hostip(hostId=host['hostid']),status[host['status']],available[host['available']])
                 else:
-                    print("HostID : %s\t HostName : %s\t HostIp : %s\t Status :\033[32m%s\033[0m \t Available :\033[31m%s\033[0m"%(host['hostid'],host['name'],self.hostid_get_hostip(hostId=host['hostid']),status[host['status']],available[host['available']]))
+                    print "HostID : %s\t HostName : %s\t HostIp : %s\t Status :\033[32m%s\033[0m \t Available :\033[31m%s\033[0m"%(host['hostid'],host['name'],self.hostid_get_hostip(hostId=host['hostid']),status[host['status']],available[host['available']])
                     return host['hostid']
 
     def hostip_get(self, hostIp=''):
@@ -200,27 +200,27 @@ class zabbix_api:
             result = urllib2.urlopen(request)
         except URLError as e:
             if hasattr(e, 'reason'):
-                print('We failed to reach a server.')
-                print('Reason: ', e.reason)
+                print 'We failed to reach a server.'
+                print 'Reason: ', e.reason
             elif hasattr(e, 'code'):
-                print('The server could not fulfill the request.')
-                print('Error code: ', e.code)
+                print 'The server could not fulfill the request.'
+                print 'Error code: ', e.code
         else:
             response = json.loads(result.read())
             # print response
             result.close()
 
             if not len(response['result']):
-                print("\033[041m hostip \033[0m is not exist")
+                print "\033[041m hostip \033[0m is not exist"
                 return False
 
             print "主机数量: \33[31m%s\33[0m" % (len(response['result']))
             for hostip in response['result']:
                 host = self.hostid_get_hostname(hostip['hostid'])
                 if len(hostip) == 0:
-                    print("HostID : %s\t HostName : %s\t HostIp : %s\t Status :\33[32m%s\33[0m \t Available :\33[31m%s\33[0m"%(hostip['hostid'],host['name'],hostip['ip'],host['status'],host['available']))
+                    print "HostID : %s\t HostName : %s\t HostIp : %s\t Status :\33[32m%s\33[0m \t Available :\33[31m%s\33[0m"%(hostip['hostid'],host['name'],hostip['ip'],host['status'],host['available'])
                 else:
-                    print("HostID : %s\t HostName : %s\t HostIp : %s\t Status :\33[32m%s\33[0m \t Available :\33[31m%s\33[0m"%(hostip['hostid'],host['name'],hostip['ip'],host['status'],host['available']))
+                    print "HostID : %s\t HostName : %s\t HostIp : %s\t Status :\33[32m%s\33[0m \t Available :\33[31m%s\33[0m"%(hostip['hostid'],host['name'],hostip['ip'],host['status'],host['available'])
                     return hostip['hostid']
 
     def hostgroup_get(self, hostgroupName=''):
@@ -244,21 +244,21 @@ class zabbix_api:
         try:
             result = urllib2.urlopen(request)
         except URLError as e:
-            print("Error as ", e)
+            print "Error as ", e
         else:
             # result.read()
             response = json.loads(result.read())
             result.close()
             #print response()
             if not len(response['result']):
-                print("\033[041m %s \033[0m is not exist" % hostgroupName)
+                print "\033[041m %s \033[0m is not exist" % hostgroupName
                 return False
 
             for group in response['result']:
                 if  len(hostgroupName)==0:
-                    print("hostgroup:  \033[31m%s\033[0m \tgroupid : %s" %(group['name'],group['groupid']))
+                    print "hostgroup:  \033[31m%s\033[0m \tgroupid : %s" %(group['name'],group['groupid'])
                 else:
-                    print("hostgroup:  \033[31m%s\033[0m\tgroupid : %s" %(group['name'],group['groupid']))
+                    print "hostgroup:  \033[31m%s\033[0m\tgroupid : %s" %(group['name'],group['groupid'])
                     self.hostgroupID = group['groupid']
             return group['groupid']
 
@@ -283,26 +283,26 @@ class zabbix_api:
         try:
             result = urllib2.urlopen(request)
         except URLError as e:
-            print("Error as ", e)
+            print "Error as ", e
         else:
             response = json.loads(result.read())
             result.close()
             #print response
             if not len(response['result']):
-                prin("\033[041m %s \033[0m is not exist" % templateName)
+                print "\033[041m %s \033[0m is not exist" % templateName
                 return False
 
             for template in response['result']:
                 if len(templateName)==0:
-                    print("template : %s \t id : %s" % (template['name'], template['templateid']))
+                    print "template : %s \t id : %s" % (template['name'], template['templateid'])
                 else:
                     self.templateID = response['result'][0]['templateid']
-                    print("Template Name :%s"%templateName)
+                    print "Template Name :%s"%templateName
                     return response['result'][0]['templateid']
 
     def hostgroup_create(self,hostgroupName):
         if self.hostgroup_get(hostgroupName):
-            print("hostgroup  \033[42m%s\033[0m is exist !" % hostgroupName)
+            print "hostgroup  \033[42m%s\033[0m is exist !" % hostgroupName
             sys.exit(1)
 
         data = json.dumps({
@@ -322,15 +322,15 @@ class zabbix_api:
         try:
             result = urllib2.urlopen(request)
         except URLError as e:
-            print("Error as ", e)
+            print "Error as ", e
         else:
             response = json.loads(result.read())
             result.close()
-            print("添加主机组:%s  hostgroupID : %s"%(hostgroupName,self.hostgroup_get(hostgroupName)))
+            print "添加主机组:%s  hostgroupID : %s"%(hostgroupName,self.hostgroup_get(hostgroupName))
 
     def host_create(self, hostIp, hostgroupName, templateName, hostName):
         if self.host_get(hostName) or self.hostip_get(hostIp):
-            print("该主机已经添加!")
+            print "该主机已经添加!"
             sys.exit(1)
 
         group_list=[]
@@ -373,12 +373,12 @@ class zabbix_api:
             result = urllib2.urlopen(request)
             response = json.loads(result.read())
             result.close()
-            print("add host : %s id :%s" % (hostIp, hostName))
+            print "add host : %s id :%s" % (hostIp, hostName)
         except URLError as e:
-            print("Error as ", e)
+            print "Error as ", e
         except KeyError as e:
-            print("\033[041m 主机添加有误，请检查模板正确性或主机是否添加重复 !\033[0m",e)
-            print(response)
+            print "\033[041m 主机添加有误，请检查模板正确性或主机是否添加重复 !\033[0m",e
+            print response
 
     def host_disable(self,hostip):
         data=json.dumps({
@@ -399,12 +399,12 @@ class zabbix_api:
             result = urllib2.urlopen(request)
             #result = opener.open(request)
         except URLError as e:
-            print("Error as ", e)
+            print "Error as ", e
         else:
             response = json.loads(result.read())
             result.close()
-            print('------------主机现在状态------------')
-            print(self.host_get(hostip))
+            print '------------主机现在状态------------'
+            print self.host_get(hostip)
 
     def host_enable(self,hostip):
         data=json.dumps({
@@ -424,19 +424,19 @@ class zabbix_api:
             result = urllib2.urlopen(request)
             #result = opener.open(request)
         except URLError as e:
-            print("Error as ", e)
+            print "Error as ", e
         else:
             response = json.loads(result.read())
             result.close()
-            print('------------主机现在状态------------')
-            print(self.host_get(hostip))
+            print '------------主机现在状态------------'
+            print self.host_get(hostip)
 
     def host_delete(self,hostNames):
         hostid_list=[]
         for hostName in hostNames.split(','):
             hostid = self.host_get(hostName=hostName)
             if not hostid:
-                print("主机 \033[041m %s\033[0m  删除失败 !" % hostName)
+                print "主机 \033[041m %s\033[0m  删除失败 !" % hostName
                 sys.exit()
             hostid_list.append(hostid)
 
@@ -455,9 +455,9 @@ class zabbix_api:
         try:
             result = urllib2.urlopen(request)
             result.close()
-            print("主机 \033[041m %s\033[0m  已经删除 !" % hostName)
+            print "主机 \033[041m %s\033[0m  已经删除 !" % hostName
         except Exception,e:
-            print(e)
+            print  e
 
 if __name__ == "__main__":
     zabbix=zabbix_api()
@@ -481,7 +481,7 @@ if __name__ == "__main__":
         #print zabbix.hostgroup_get(hostgroupName='Linux servers')
         #print zabbix.hostgroup_get(hostgroupName='aaa')
         # ...
-        print(zabbix.host_delete('hz-aaa-02'))
+        print zabbix.host_delete('hz-aaa-02')
     else:
         args = parser.parse_args()
         if args.listhost != 'host':
